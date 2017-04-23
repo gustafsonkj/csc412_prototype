@@ -24,34 +24,38 @@ public class ChangeDirection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        EnemyUnit eu = other.gameObject.GetComponent<EnemyUnit>();
-        int dir = Random.Range(0, 2);
-
-        eu.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        eu.GetComponent<Rigidbody>().rotation = Quaternion.identity;
-
-        if (eu != null)
+        if(other.gameObject.GetComponent<EnemyUnit>() != null)
         {
-            if (dir == 0)
-            {
-                eu.velocity.x = newDirection1.x * 100.0f;
-                eu.velocity.y = newDirection1.y * 100.0f;
-                eu.velocity.z = newDirection1.z * 100.0f;
+            EnemyUnit eu = other.gameObject.GetComponent<EnemyUnit>();
+            int dir = Random.Range(0, 2);
 
-                eu.rotation.x = newRotation1.x;
-                eu.rotation.y = newRotation1.y;
-                eu.rotation.z = newRotation1.z;
-            }
-            else if (dir == 1)
-            {
-                eu.velocity.x = newDirection2.x * 100.0f;
-                eu.velocity.y = newDirection2.y * 100.0f;
-                eu.velocity.z = newDirection2.z * 100.0f;
+            eu.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            eu.GetComponent<Rigidbody>().rotation = Quaternion.identity;
 
-                eu.rotation.x = newRotation2.x;
-                eu.rotation.y = newRotation2.y;
-                eu.rotation.z = newRotation2.z;
+            if (eu != null)
+            {
+                if (dir == 0)
+                {
+                    eu.velocity.x = newDirection1.x * 100.0f;
+                    eu.velocity.y = newDirection1.y * 100.0f;
+                    eu.velocity.z = newDirection1.z * 100.0f;
+
+                    eu.rotation.x = newRotation1.x;
+                    eu.rotation.y = newRotation1.y;
+                    eu.rotation.z = newRotation1.z;
+                }
+                else if (dir == 1)
+                {
+                    eu.velocity.x = newDirection2.x * 100.0f;
+                    eu.velocity.y = newDirection2.y * 100.0f;
+                    eu.velocity.z = newDirection2.z * 100.0f;
+
+                    eu.rotation.x = newRotation2.x;
+                    eu.rotation.y = newRotation2.y;
+                    eu.rotation.z = newRotation2.z;
+                }
             }
         }
+        
     }
 }
