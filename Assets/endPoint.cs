@@ -12,7 +12,7 @@ public class endPoint : MonoBehaviour {
 	void Start ()
     {
         count = 0;
-        text = GameObject.Find("WinText");
+        //text = GameObject.Find("WinText");
 	}
 	
 	// Update is called once per frame
