@@ -24,7 +24,7 @@ public class ChangeDirection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<EnemyUnit>() != null)
+        if (other.gameObject.GetComponent<EnemyUnit>() != null)
         {
             EnemyUnit eu = other.gameObject.GetComponent<EnemyUnit>();
             int dir = Random.Range(0, 2);
