@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyUnit : MonoBehaviour
 {
 
-    public float health;
+    public float health, speed;
     public Vector3 velocity = new Vector3();
     public Vector3 rotation = new Vector3();
 
@@ -25,6 +25,7 @@ public class EnemyUnit : MonoBehaviour
     public void explode()
     {
         Destroy(gameObject);
+
     }
 
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TorpedoScript : MonoBehaviour {
 
+    public WinConditions wc;
     public float speed;
+    public GameObject explosion;
 
 	// Use this for initialization
 	void Start ()
     {
+        wc = GameObject.Find("GameManager").GetComponent<WinConditions>();
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
 	}
 
@@ -21,6 +24,8 @@ public class TorpedoScript : MonoBehaviour {
         if (other.CompareTag("Creep") && this.gameObject.CompareTag("USTorpedo"))
         {
             Destroy(other.gameObject);
+            Instantiate(explosion, other.transform.position, Quaternion.identity);
+            wc.score++;
         }
         if(other.CompareTag("USSR"))
         {

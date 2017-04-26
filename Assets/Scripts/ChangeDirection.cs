@@ -36,9 +36,9 @@ public class ChangeDirection : MonoBehaviour
             {
                 if (dir == 0)
                 {
-                    eu.velocity.x = newDirection1.x * 100.0f;
-                    eu.velocity.y = newDirection1.y * 100.0f;
-                    eu.velocity.z = newDirection1.z * 100.0f;
+                    eu.velocity.x = newDirection1.x * eu.speed;
+                    eu.velocity.y = newDirection1.y * eu.speed;
+                    eu.velocity.z = newDirection1.z * eu.speed;
 
                     eu.rotation.x = newRotation1.x;
                     eu.rotation.y = newRotation1.y;
@@ -46,9 +46,9 @@ public class ChangeDirection : MonoBehaviour
                 }
                 else if (dir == 1)
                 {
-                    eu.velocity.x = newDirection2.x * 100.0f;
-                    eu.velocity.y = newDirection2.y * 100.0f;
-                    eu.velocity.z = newDirection2.z * 100.0f;
+                    eu.velocity.x = newDirection2.x * eu.speed;
+                    eu.velocity.y = newDirection2.y * eu.speed;
+                    eu.velocity.z = newDirection2.z * eu.speed;
 
                     eu.rotation.x = newRotation2.x;
                     eu.rotation.y = newRotation2.y;

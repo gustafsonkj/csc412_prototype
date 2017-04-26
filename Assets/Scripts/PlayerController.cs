@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-
+    public WinConditions wc;
     public GameObject player;
     public GameObject Torpedo;
+    public GameObject explosion;
+
     public float speed;
     public float rotateSpeed;
     public float lifetime;
     public Component[] rends;
-    public Transform fireTransform;
+    public Transform fireTransform, sovietRespawnPoint;
     public float health;
 
     void Start ()
     {
+        player = gameObject;
         rends = GetComponentsInChildren<Renderer>();
 		if (player.CompareTag("US"))
         {
@@ -88,7 +91,12 @@ public class PlayerController : MonoBehaviour {
 
             }
             if (health <= 0)
+            {
                 Destroy(player);
+                Instantiate(explosion, transform.position, Quaternion.identity);
+                wc.USLose();
+            }
+                
         }
 
         if (player.CompareTag("USSR"))
@@ -126,9 +134,22 @@ public class PlayerController : MonoBehaviour {
 
             }
             if (health <= 0)
-                Destroy(player);
+            {
+                health = 125f;
+                Instantiate(explosion, transform.position, Quaternion.identity);
+                StartCoroutine("respawnActivate");
+            }
 
         }
         
     }
+
+    IEnumerator respawnActivate()
+    {
+        enabled = false;
+        transform.position = sovietRespawnPoint.position;
+        yield return new WaitForSeconds(6.0f);
+        enabled = true;
+    }
+
 }
