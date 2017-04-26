@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour {
     public float rotateSpeed;
     public float lifetime;
     public Component[] rends;
-    public Transform fireTransform, sovietRespawnPoint;
+    public Transform fireTransform;
+    public Transform[] RespawnPoint = new Transform[4];
     public float health;
 
     void Start ()
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour {
         {
             speed = 20f;
             rotateSpeed = 100f;
-            health = 125f;
+            health = 200f;
             foreach(Renderer r in rends)
             {
                 r.material.color = Color.blue;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour {
         if (player.CompareTag("USSR"))
         {
             speed = 10f;
-            rotateSpeed = 20f;
+            rotateSpeed = 40f;
             health = 75f;
             foreach(Renderer r in rends)
             {
@@ -92,9 +93,9 @@ public class PlayerController : MonoBehaviour {
             }
             if (health <= 0)
             {
-                Destroy(player);
+                health = 200f;
                 Instantiate(explosion, transform.position, Quaternion.identity);
-                wc.USLose();
+                StartCoroutine("respawnActivate");
             }
                 
         }
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviour {
             }
             if (health <= 0)
             {
-                health = 125f;
+                health = 75f;
                 Instantiate(explosion, transform.position, Quaternion.identity);
                 StartCoroutine("respawnActivate");
             }
@@ -147,7 +148,7 @@ public class PlayerController : MonoBehaviour {
     IEnumerator respawnActivate()
     {
         enabled = false;
-        transform.position = sovietRespawnPoint.position;
+        transform.position = RespawnPoint[(Random.Range(0,3))].position;
         yield return new WaitForSeconds(6.0f);
         enabled = true;
     }
