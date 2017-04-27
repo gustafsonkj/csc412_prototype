@@ -29,7 +29,7 @@ public class CreepSpawn : MonoBehaviour
         {
             int choice = Random.Range(0, spawnPositions.Count);
             Instantiate(creep, spawnPositions[choice].position, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(5f, 7f));
+            yield return new WaitForSeconds(Random.Range(2f, 4f));
 
         }
         
